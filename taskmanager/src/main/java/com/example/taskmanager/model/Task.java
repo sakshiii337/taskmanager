@@ -1,0 +1,34 @@
+package com.example.taskmanager.model;
+
+import jakarta.persistence.*;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "tasks")
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "status")
+    private String status;
+    @Column(name = "created_at",insertable = false,updatable = false)
+    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+
+}
